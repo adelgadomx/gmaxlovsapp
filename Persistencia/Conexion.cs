@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Persistencia
 {
@@ -25,14 +22,10 @@ namespace Persistencia
         public SqlConnection ConexionBD()
         {
             SqlConnection conexion = new SqlConnection();
-            conexion.ConnectionString = "Data Source=10.52.3.249; Initial Catalog=gmaxDB; User ID=usrgmax; Password=P4$$w0rd";
+            // "Data Source=10.52.3.249; Initial Catalog=gmaxDB; User ID=usrgmax; Password=P4$$w0rd";
+            conexion.ConnectionString = ConfigurationManager.ConnectionStrings["gmaxDB"].ConnectionString;
             return conexion;
         }
-
-        //public String GetConnectionString()
-        //{
-        //    return ConfigurationManager.ConnectionStrings["local_clinica"].ConnectionString;
-        //}
 
     }
 }
