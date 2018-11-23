@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Modelo;
 using Persistencia;
 
@@ -34,6 +31,19 @@ namespace Logica
                 throw ex;
             }
 
+        }
+
+        public int RegistrarRol ( Rol pRolInstance )
+        {
+            try
+            {
+                return RolDAO.getInstance().InsertarRol(pRolInstance);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
     }

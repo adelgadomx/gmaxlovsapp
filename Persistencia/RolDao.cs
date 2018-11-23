@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Modelo;
-
 
 namespace Persistencia
 {
@@ -25,18 +21,22 @@ namespace Persistencia
         }
         #endregion
 
+        private SqlConnection con = Conexion.getInstance().ConexionBD();
+        private SqlCommand cmd = new SqlCommand();
+        private SqlDataReader dr = null;
+        private int nr = 0;
+
         public List<Rol> dsListaRoles()
         {
-            SqlConnection con = null;
-            SqlCommand cmd = null;
-            SqlDataReader dr = null;
 
             List<Rol> ListaRoles = new List<Rol>();
 
             try
             {
-                con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("SELECT id_rol, de_rol FROM gmxc_roles;", con);
+                cmd.Parameters.Clear();
+                // con = Conexion.getInstance().ConexionBD();
+                cmd.Connection = con;
+                cmd.CommandText = "SELECT id_rol, de_rol FROM gmxc_roles;";
                 cmd.CommandType = CommandType.Text;
                 con.Open();
                 dr = cmd.ExecuteReader();
@@ -60,5 +60,35 @@ namespace Persistencia
             return ListaRoles;
         }
 
+        public int InsertarRol (Rol pRolInstance)
+        {
+
+            try
+            {
+                cmd.Parameters.Clear();
+                cmd = new SqlCommand("INSERT INTO gmxc_roles(de_rol) VALUES (@pDErol);", con);
+                cmd.Parameters.AddWithValue("@pDErol", pRolInstance.DErol.ToString());
+                cmd.CommandType = CommandType.Text;
+                con.Open();
+                if (cmd.ExecuteNonQuery() > 0 )
+                {
+                    cmd.Parameters.Clear();
+                    cmd.CommandText = "SELECT CAST(@@IDENTITY AS int)";
+                    nr = (int)cmd.ExecuteScalar();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                nr = 0;
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return nr;
+        }
     }
 }

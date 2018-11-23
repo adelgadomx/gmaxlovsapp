@@ -223,6 +223,7 @@
     <Content Include="css\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="fonts\fontawesome-webfonts.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="GestionarRoles.aspx" />
     <Content Include="img\ajax-loader.gif" />
     <Content Include="img\ajax-loader1.gif" />
     <Content Include="img\avatar.png" />
@@ -403,6 +404,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Custon\SessionManager.cs" />
+    <Compile Include="GestionarRoles.aspx.cs">
+      <DependentUpon>GestionarRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarRoles.aspx.designer.cs">
+      <DependentUpon>GestionarRoles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GmxGeneral.Master.cs">
       <DependentUpon>GmxGeneral.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

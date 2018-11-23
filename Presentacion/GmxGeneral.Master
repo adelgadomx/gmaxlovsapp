@@ -159,7 +159,7 @@
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <a href="#"><i class="fa fa-angle-double-right"></i>Tipos de Persona</a>
+                                <a href="GestionarRoles.aspx"><i class="fa fa-angle-double-right"></i>Lov Roles de Personas</a>
                             </li>
                         </ul>
                     </li>
