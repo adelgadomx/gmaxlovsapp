@@ -395,6 +395,7 @@
     <Content Include="js\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="js\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="js\reserva.js" />
+    <Content Include="js\roles.js" />
     <Content Include="Login.aspx" />
     <Content Include="PanelGeneral.aspx" />
     <Content Include="Web.config" />

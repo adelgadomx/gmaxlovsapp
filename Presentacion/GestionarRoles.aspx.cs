@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Modelo;
 using Logica;
+using System.Web.Services;
 
 namespace Presentacion
 {
@@ -13,7 +14,10 @@ namespace Presentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack )
+            {
+                mvMainRoles.ActiveViewIndex = 1;
+            }
         }
 
         private Rol setRolInstance()
@@ -43,7 +47,31 @@ namespace Presentacion
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-            Response.Redirect("PanelGeneral.aspx");
+            //Response.Redirect("PanelGeneral.aspx");
+            txtDescripcion.Text = null;
+            mvMainRoles.ActiveViewIndex = 1;
+        }
+
+        [WebMethod]
+        public static List<Rol> ListarRoles ()
+        {
+            List<Rol> Lista = null;
+
+            try
+            {
+                Lista = Logica.RolLG.getInstance().ListarolesDS();
+            }
+            catch (Exception ex)
+            {
+                Lista = null;
+                throw ex;
+            }
+            return Lista;
+        }
+
+        protected void btnAltaAction_Click(object sender, EventArgs e)
+        {
+            mvMainRoles.ActiveViewIndex = 0;
         }
     }
 }
